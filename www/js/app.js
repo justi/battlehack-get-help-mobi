@@ -36,47 +36,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: "templates/tabs.html"
     })
 
-    // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      }
-    })
-
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    })
-
     .state('tab.map', {
       url: '/map',
       views: {
@@ -87,8 +46,48 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.requests', {
+      url: '/requests',
+      views: {
+        'tab-requests': {
+          templateUrl: 'templates/tab-requests.html',
+          controller: 'RequestsCtrl'
+        }
+      }
+    })
+
+    .state('tab.request-details', {
+      url: '/requests/:userId',
+      views: {
+        'tab-requests': {
+          templateUrl: 'templates/request-details.html',
+          controller: 'RequestDetailsCtrl'
+        }
+      }
+    })
+
+    .state('tab.my-requests', {
+      url: '/my-requests',
+      views: {
+        'tab-my-requests': {
+          templateUrl: 'templates/tab-my-requests.html',
+          controller: 'MyRequestsCtrl'
+        }
+      }
+    })
+
+    .state('tab.settings', {
+      url: '/settings',
+      views: {
+        'tab-settings': {
+          templateUrl: 'templates/tab-settings.html',
+          controller: 'SettingsCtrl'
+        }
+      }
+    })
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/map');
 
 });
 

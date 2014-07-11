@@ -1,17 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('SettingsCtrl', function($scope) {
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('RequestsCtrl', function($scope, Users) {
+  $scope.users = Users.all();
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
+.controller('RequestDetailsCtrl', function($scope, $stateParams, Users) {
+  $scope.user = Users.get($stateParams.userId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('MyRequestsCtrl', function($scope) {
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
