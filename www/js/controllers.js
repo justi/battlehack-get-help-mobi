@@ -105,13 +105,18 @@ angular.module('starter.controllers', [])
         $scope.categories = Categories.all();
     })
     .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
+        $scope.userdata = {
+            email:'krzysztof.hasinski@gmail.com'
+        };
         $scope.error = null;
-        $scope.test = function() { $state.go('tab.map'); }
+        $scope.test = function() { $state.go('tab-map'); }
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
+                    console.log(data);
                     $scope.error = null;
                     $rootScope.userdata = data;
+                    $http.defaults.headers.common.Authorization = "Token "+ data.login_token;
                     $state.go('tab.map');
                 })
                 .error(function() {
