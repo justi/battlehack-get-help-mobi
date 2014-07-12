@@ -78,8 +78,13 @@
       <h4>Applied to your task</h4>
 
       <a class="item item-avatar" ng-repeat="user in applied">
-        <img src="http://placehold.it/32x32" />
-        <h2>{{user.email_hash}}</h2>
+        <img src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
+          <label class="toggle toggle-assertive">
+              <input type="checkbox" ng-model="settings.categories[category]">
+              <div class="track">
+                  <div class="handle"></div>
+              </div>
+          </label>
       </a>
     </div>
   </ion-content>
