@@ -46,6 +46,15 @@
 
   <!-- Right menu with badges -->
   <ion-side-menu side="right" ng-controller="RightSlideCtrl">
+    <div class="item item-divider">
+        My achievements
+    </div>
+    <div class="item item-toggle">
+      <p><img ng-src={{avatarSrc}}> Email: {{user.email}}</p>
+      <img src="http://placehold.it/108x108" class:"points-icon float-left"><h1 class="points-title">{{points}}</h1>
+    </div>
+
+
     <div ng-repeat="badge in badges">
       <div class="item item-divider">
         Badge category

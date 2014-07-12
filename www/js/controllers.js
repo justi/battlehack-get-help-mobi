@@ -158,8 +158,9 @@ angular.module('starter.controllers', [])
         }, true);
         $scope.categories = Categories.all();
     })
-    .controller('RightSlideCtrl', function($scope, $ionicSideMenuDelegate, Badges) {
+    .controller('RightSlideCtrl', function($scope, $ionicSideMenuDelegate, Badges, $rootScope) {
         $scope.badges = Badges.all();
+        $scope.avatarSrc =  "http://www.gravatar.com/" + "KSDHHDSHDSHDSDKSH";//$rootScope.user.emailHash; TODO
     })
     .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
         var ls = window.localStorage;

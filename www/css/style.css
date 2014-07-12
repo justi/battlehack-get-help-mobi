@@ -14,3 +14,13 @@
 .full-width {
   width: 100%;
 }
+
+.float-left {
+  float: left;
+}
+
+h1.points-title{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 4em;
+}
