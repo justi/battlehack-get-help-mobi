@@ -15,7 +15,6 @@ angular.module('starter.controllers', [])
             ls.setItem('settings', JSON.stringify($scope.settings));
         }, true);
         $scope.openWindow = function() {
-            console.log('aaaa')
             window.open('http://apache.org', '_blank', 'location=yes');
         };
     })
