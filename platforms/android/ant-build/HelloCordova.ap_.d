@@ -118,10 +118,11 @@
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/plugins/com.ionic.keyboard/www/keyboard.js \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
-/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/friend-detail.html \
-/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-account.html \
-/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-dash.html \
-/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-friends.html \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/request-details.html \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-login.html \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-map.html \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-my-requests.html \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-requests.html \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-settings.html \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tabs.html \
 /Users/justi/projects/get-help-mobi/platforms/android/ant-build/AndroidManifest.xml \

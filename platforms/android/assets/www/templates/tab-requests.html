@@ -1,0 +1,12 @@
+<ion-view title="Requests">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="user in users" type="item-text-wrap" href="#/tab/requests/{{user.id}}">
+        {{user.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

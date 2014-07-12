@@ -12,12 +12,12 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Favour</name>
     <description>
-        An Ionic Framework and Cordova project.
+        Favour - gamify good deeds
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="hi@youtrwam.com" href="http://youtrwam.com/">
+      Favour BattleHack Team
     </author>
     <content src="index.html" />
     <access origin="*" />
