@@ -1,0 +1,24 @@
+<ion-view title="Login">
+  <ion-content has-header="true" padding="true">
+    <img src="http://placehold.it/300x150" class="padding padding-top-big full-width">
+    <form name="loginForm">
+      <div class="list padding padding-top-big">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="Email" ng-model="userdata.email" required/>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Phone</span>
+          <input type="tel" placeholder="Phone" ng-model="userdata.phone" required/>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Password" ng-model="userdata.password" required/>
+        </label>
+        <button class="button button-full button-positive" ng-click="login()" ng-disabled="loginForm.$invalid || loginForm.$pristine">
+          Login
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

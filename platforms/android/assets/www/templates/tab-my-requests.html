@@ -1,5 +1,87 @@
-<ion-view title="My requests">
+<ion-view title="{{show=='edit' ? 'My task details' : 'New task'}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class:"points-icon">{{points}}</button>
+  </ion-nav-buttons>
   <ion-content class="has-header padding">
-      <h1>My requests</h1>
+    <div class="list" ng-show="show=='add'">
+      <form name="addTaskForm">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category
+          </div>
+          <select ng-model="myTask.type" required>
+            <option ng-repeat="category in categories" value="{{category}}">
+              {{category}}
+            </option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="Title" ng-model="myTask.title" required/>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
+          <input type="text" placeholder="Description" ng-model="myTask.details" />
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Deadline
+          </div>
+          <select>
+            <option value="{{15*60*1000}}">15min</option>
+            <option value="{{60*60*1000}}">1h</option>
+            <option value="{{2*60*60*1000}}">2h</option>
+            <option value="{{8*60*60*1000}}">8h</option>
+          </select>
+        </label>
+
+        <div class="item item-divider">
+          Points
+        </div>
+
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            Points to spend: {{myTask.points}}
+          </label>
+          <div class="item range range-balanced">
+            1
+            <input type="range" name="volume" min="1" max="{{points}}" ng-model="myTask.points" required/>
+            {{points}}
+          </div>
+        </div>
+
+        <button class="button button-full button-balanced" ng-click="add()" ng-disabled="addTaskForm.$invalid || addTaskForm.$pristine">
+          <i class="icon ion-plus-round"></i> Add
+        </button>
+      </form>
+    </div>
+
+    <div class="list" ng-show="show=='edit'">
+      <div class="item item-divider">
+        {{myTask.title}}
+      </div>
+      <div class="item item-avatar">
+        <img src="http://placehold.it/32x32">
+        <h2><img src="http://placehold.it/32x32" class:"points-icon">{{myTask.points}}</h2>
+          <p>{{myTask.details}}</p>
+          <p>Deadline: {{deadline}}</p>
+      </div>
+      <button class="button button-assertive button-full" ng-click="delete()">
+        Delete task
+      </button>
+    </div>
+
+    <div class="list" ng-show="show=='edit'">
+      <h4>Applied to your task</h4>
+
+      <a class="item item-avatar" ng-repeat="user in users" href="#/tab/requests/2/{{user.id}}">
+        <img src="http://placehold.it/32x32">
+        <h2>{{user.name}}</h2>
+        <p>Back off, man. I'm a scientist.</p>
+      </a>
+    </div>
   </ion-content>
 </ion-view>

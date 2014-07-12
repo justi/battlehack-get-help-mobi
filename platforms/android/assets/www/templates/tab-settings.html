@@ -1,11 +1,30 @@
 <ion-view title="Settings">
-
     <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-        <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
-            Back
-        </ion-nav-back-button>
     </ion-nav-bar>
   <ion-content class="has-header padding">
-    <h1>Settings</h1>
+
+      <ul class="list">
+
+          <li class="item item-divider">
+              Notifications
+          </li>
+          <li class="item item-toggle">Emails
+              <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="settings.notificationEmails">
+                  <div class="track">
+                      <div class="handle"></div>
+                  </div>
+              </label>
+          </li>
+          <li class="item item-toggle">Emergency phone calls
+              <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="settings.phoneCalls">
+                  <div class="track">
+                      <div class="handle"></div>
+                  </div>
+              </label>
+          </li>
+      </ul>
+      <button ng-click="openWindow()">TEST</button>
   </ion-content>
 </ion-view>

@@ -26,15 +26,56 @@ angular.module('starter.services', [])
 })
 .factory('Categories', function() {
   var categories = [
-    { id: 0, name: 'Category1' },
-    { id: 1, name: 'Category2' },
-    { id: 2, name: 'Category3' },
-    { id: 3, name: 'Category4' }
-  ];
+      'Babysitting',
+      'Moving in/out',
+      'Groceries',
+      'Transport',
+      'Pet care',
+      'Emergency',
+      'Battlehack'
+  ]
 
   return {
     all: function() {
       return categories;
+    }
+  }
+})
+.factory('Tasks', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var tasks = [
+    { id: 0, userId: 0, name: 'Task0' },
+    { id: 1, userId: 1, name: 'Task1' }
+  ];
+
+  return {
+    all: function() {
+      return tasks;
+    },
+    get: function(taskId) {
+      // Simple index lookup
+      return tasks[taskId];
+    }
+  }
+})
+.factory('Badges', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var badges = [
+    { id: 0, userId: 0, name: 'Badge lvl1'},
+    { id: 1, userId: 0, name: 'Badge lvl2'}
+  ];
+
+  return {
+    all: function() {
+      return badges;
+    },
+    get: function(badgeId) {
+      // Simple index lookup
+      return badges[badgeId];
     }
   }
 });
