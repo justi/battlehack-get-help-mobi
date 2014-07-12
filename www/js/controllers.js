@@ -79,6 +79,12 @@ angular.module('starter.controllers', [])
         };
 
         $scope.init();
+        $scope.$on(
+            "$destroy",
+            function() {
+                $ionicLoading.hide();
+            }
+        );
 
     })
     .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
