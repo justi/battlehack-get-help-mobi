@@ -1,24 +1,51 @@
 <ion-view title="Add task/apply">
   <ion-content class="has-header padding">
-
     <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Category
+        </div>
+        <select>
+          <option ng-repeat="category in categories">
+            {{category.name}}
+          </option>
+        </select>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Title</span>
+        <input type="text" placeholder="Title">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Description</span>
+        <input type="text" placeholder="Description">
+      </label>
+
       <div class="item item-divider">
-        Applied to
+        Points
       </div>
-      <a class="item" href="#">
-        Butterfinger {cancel}
-      </a>
-      <a class="item" href="#">
-        Butterfinger {cancel}
-      </a>
+
+      <div class="list">
+        <div class="item range range-balanced">
+          0
+          <input type="range" name="volume" min="0" max="100" value="33">
+          100
+        </div>
+      </div>
+
+      <button class="button button-full button-balanced">
+        <i class="icon ion-plus-round"></i> Add
+      </button>
     </div>
 
     <div class="list">
       <div class="item item-divider">
         My task
       </div>
-      <a class="item" href="#">
-        Butterfinger {cancel}
+      <a class="item item-avatar" href="#/tab/requests/1">
+        <img src="venkman.jpg">
+        <h2>Venkman</h2>
+        <p>Back off, man. I'm a scientist.</p>
       </a>
     </div>
 
@@ -31,13 +58,5 @@
         <p>Back off, man. I'm a scientist.</p>
       </a>
     </div>
-    <ul>
-      <li>Kategoria</li>
-      <li>Tytul taska</li>
-      <li>Szczegoly</li>
-      <li>Punkty - slider</li>
-      <li>Button dodaj / zmien</li>
-      <li>Lista uzytkownikow, ktorzy sie zglosili do tego taska</li>
-    </ul>
   </ion-content>
 </ion-view>

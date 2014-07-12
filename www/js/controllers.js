@@ -27,8 +27,9 @@ angular.module('starter.controllers', [])
         $scope.user = Users.get($stateParams.userId);
     })
 
-    .controller('MyRequestsCtrl', function($scope, Users) {
+    .controller('MyRequestsCtrl', function($scope, Users, Categories) {
         $scope.users = Users.all();
+        $scope.categories = Categories.all();
     })
 
     .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
