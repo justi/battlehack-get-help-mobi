@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,12 +18,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $rootScope.$on('needLogin', function(){
+        $state.go('login');
+    })
   });
 })
 .config(function($httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
 })
+
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push(['$rootScope', '$q', '$injector', function($rootScope, $q) {
+        return {
+            responseError: function(rejection) {
+                if (rejection.status === 403) {
+                    $rootScope.$emit('needLogin');
+                }
+                // otherwise, default behaviour
+                return $q.reject(rejection);
+            }
+        };
+    }])
+}])
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -60,7 +77,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.request-details', {
-      url: '/requests/:userId',
+      url: '/requests/:taskId',
       views: {
         'tab-requests': {
           templateUrl: 'templates/request-details.html',

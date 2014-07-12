@@ -15,7 +15,6 @@ angular.module('starter.controllers', [])
                     'BattleHack': true
                 }
             }
-            console.log(baseSettings);
             ls.setItem('settings', JSON.stringify(baseSettings));
         }
 
@@ -28,12 +27,29 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('RequestsCtrl', function($scope, Users) {
+    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope) {
         $scope.users = Users.all();
+        $rootScope.tasks = [];
+
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            $http.get('http://favourhood.org/api/task').success(function(data){
+                $rootScope.tasks = data;
+            });
+        });
     })
 
-    .controller('RequestDetailsCtrl', function($scope, $stateParams, Users) {
-        $scope.user = Users.get($stateParams.userId);
+    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope) {
+        var taskId = $stateParams.taskId;
+        console.log(taskId);
+        console.log($rootScope.tasks)
+        for(var i=0; i<$rootScope.tasks.length; ++i) {
+            if($rootScope.tasks[i].id == taskId)
+            {
+                $scope.task = $rootScope.tasks[i];
+            }
+        }
     })
 
     .controller('UserDetailsCtrl', function($scope, $stateParams, Tasks, Users) {
@@ -177,7 +193,7 @@ angular.module('starter.controllers', [])
             email:'krzysztof.hasinski@gmail.com'
         };
         $scope.error = null;
-        
+
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {

@@ -1,23 +1,23 @@
-<ion-view title="Task.title">
+<ion-view title="{{task.title}}">
   <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class:"points-icon">{{points}}</button>
+    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class="points-icon">{{points}}</button>
   </ion-nav-buttons>
   <ion-content has-header="true">
     <div class="list card">
       <div class="item">
-        <p>task.description</p>
-        <p>task.deadline</p>
+        <p>{{task.details}}</p>
+        <p>Deadline: {{deadline}}</p>
       </div>
 
       <div class="item item-avatar">
         <img src="http://placehold.it/48x48">
-        <h2>Author: {{user.name}}</h2>
-        <p>User badges</p>
+        <h2>Author: {{task.added.email_hash}}</h2>
+        <p>User badges // TODO</p>
       </div>
-      <button class="button button-full button-balanced">
+      <button class="button button-full button-balanced" ng-hide="task.applied" ng-click="apply()">
         Apply
       </button>
-      <button class="button button-full button-energized">
+      <button class="button button-full button-energized" ng-show="task.applied ng-click="cancel()">
         Cancel
       </button>
     </div>
