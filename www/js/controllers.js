@@ -104,8 +104,20 @@ angular.module('starter.controllers', [])
         }, true);
         $scope.categories = Categories.all();
     })
-    .controller('LoginCtrl', function ($scope) {
-
+    .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
+        $scope.error = null;
+        $scope.test = function() { $state.go('tab.map'); }
+        $scope.login = function() {
+            $http.post('http://favourhood.org/api/login', $scope.userdata)
+                .success(function(data) {
+                    $scope.error = null;
+                    $rootScope.userdata = data;
+                    $state.go('tab.map');
+                })
+                .error(function() {
+                    $scope.error = "Invalid username and/or password"
+                });
+        }
     })
 ;
 
