@@ -6,3 +6,11 @@
 .scroll {
   height: 100%;
 }
+
+.padding-top-big {
+  padding-top: 100px;
+}
+
+.full-width {
+  width: 100%;
+}
