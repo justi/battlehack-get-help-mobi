@@ -35,7 +35,7 @@ angular.module('starter.controllers', [])
                     mapTypeControl: true,
                     scaleControl: true,
                     streetViewControl: false,
-                    overviewMapControl: false,
+                    overviewMapControl: true,
                     mapTypeControlOptions: {
                         mapTypeIds: [
                             google.maps.MapTypeId.ROADMAP,
