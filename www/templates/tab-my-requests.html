@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class:"points-icon">{{points}}</button>
+    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class="points-icon">{{points}}</button>
   </ion-nav-buttons>
   <ion-content class="has-header padding">
     <div class="list" ng-show="show=='add'">
@@ -65,7 +65,7 @@
       </div>
       <div class="item item-avatar">
         <img src="http://placehold.it/32x32">
-        <h2><img src="http://placehold.it/32x32" class:"points-icon">{{myTask.points}}</h2>
+        <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
           <p>{{myTask.details}}</p>
           <p>Deadline: {{deadline}}</p>
       </div>
@@ -77,10 +77,9 @@
     <div class="list" ng-show="show=='edit'">
       <h4>Applied to your task</h4>
 
-      <a class="item item-avatar" ng-repeat="user in users" href="#/tab/requests/2/{{user.id}}">
-        <img src="http://placehold.it/32x32">
-        <h2>{{user.name}}</h2>
-        <p>Back off, man. I'm a scientist.</p>
+      <a class="item item-avatar" ng-repeat="user in applied">
+        <img src="http://placehold.it/32x32" />
+        <h2>{{user.email_hash}}</h2>
       </a>
     </div>
   </ion-content>

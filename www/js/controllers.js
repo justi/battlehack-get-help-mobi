@@ -102,9 +102,12 @@ angular.module('starter.controllers', [])
             if(data!='null') {
                 $scope.show='edit';
                 $scope.myTask = data;
+                $scope.applied = [];
+                $http.get('http://favourhood.org/api/applied').success(function(data){
+                    $scope.applied = data;
+                });
             } else {
                 $scope.show='add';
-                $scope.users = Users.all();
                 $scope.myTask = {
                     points: 1,
                     title: '',
