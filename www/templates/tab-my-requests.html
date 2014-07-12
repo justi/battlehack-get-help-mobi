@@ -1,4 +1,4 @@
-<ion-view title="{{myTask.saved ? 'My task details' : 'New task'}}">
+<ion-view title="{{show=='edit' ? 'My task details' : 'New task'}}">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -6,13 +6,13 @@
     <button menu-toggle="right" class="button button-icon">{{points}}<img src="http://placehold.it/32x32"></button>
   </ion-nav-buttons>
   <ion-content class="has-header padding">
-    <div class="list">
+    <div class="list" ng-show="show=='add'">
       <label class="item item-input item-select">
         <div class="input-label">
           Category
         </div>
-        <select ng-model="type">
-          <option ng-repeat="category in categories">
+        <select ng-model="myTask.type">
+          <option ng-repeat="category in categories" value="{{category}}">
             {{category}}
           </option>
         </select>
@@ -46,32 +46,33 @@
           Points to spend: {{myTask.points}}
         </label>
         <div class="item range range-balanced">
-          0
+          1
           <input type="range" name="volume" min="1" max="{{points}}" ng-model="myTask.points" />
           {{points}}
         </div>
       </div>
 
-      <button class="button button-full button-balanced">
+      <button class="button button-full button-balanced" ng-click="add()">
         <i class="icon ion-plus-round"></i> Add
       </button>
     </div>
 
-    <div class="list" ng-hide="myTask">
+    <div class="list" ng-show="show=='edit'">
       <div class="item item-divider">
         My task
       </div>
-      <div class="item item-avatar" href="#/tab/requests/1">
+      <div class="item item-avatar">
         <img src="http://placehold.it/32x32">
-        <h2>Venkman</h2>
-        <p>Back off, man. I'm a scientist.</p>
-        <button class="button button-assertive button-full button-small">
+        <h2>{{myTask.title}}</h2>
+          <p>{{myTask.details}}</p>
+          <p>Deadline: {{deadline}}</p>
+        <button class="button button-assertive button-full button-small" ng-click="delete()">
           Delete task
         </button>
       </div>
     </div>
 
-    <div class="list" ng-hide="myTask">
+    <div class="list" ng-show="show=='edit'">
       <h4>Applied to your task</h4>
 
       <a class="item item-avatar" ng-repeat="user in users" href="#/tab/requests/2/{{user.id}}">

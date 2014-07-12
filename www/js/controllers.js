@@ -42,24 +42,35 @@ angular.module('starter.controllers', [])
     })
 
     .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state) {
-        $scope.users = Users.all();
+        $scope.myTask = null;
+        $scope.show = null;
         $scope.categories = Categories.all();
-        $scope.myTask = {
-            points: 1,
-            title: '',
-            details: ''
-        };
+        $http.get('http://favourhood.org/api/task/my').success(function(data){
+            if(data) {
+                $scope.show='edit';
+                $scope.myTask = data;
+            } else {
+                $scope.show='add'
+                $scope.users = Users.all();
+                $scope.myTask = {
+                    points: 1,
+                    title: '',
+                    details: '',
+                    type: ''
+                };
+            }
+        });
         $scope.add = function() {
-
             navigator.geolocation.getCurrentPosition(function (pos) {
                 $scope.myTask.lat = pos.coords.latitude;
                 $scope.myTask.lng = pos.coords.longitude;
                 $scope.myTask.deadline = Date.now() + (3600 * 1000);
-
-                $http.post('http://favourhood.org/api/task', $scope.myTask).success(function(data) {
-                    $state.reload();
+                $http.post('http://favourhood.org/api/task/delete').success(function(){
+                    $http.post('http://favourhood.org/api/task', $scope.myTask).success(function(data) {
+                        $state.go($state.current, {}, {reload: true});
+                    });
                 });
-            });
+            }, function(err) { console.log(err); });
         }
     })
 
