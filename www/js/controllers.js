@@ -1,6 +1,19 @@
 angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
+        var ls = window.localStorage;
+
+        if(!ls.getItem('settings')) {
+            var baseSettings = {
+                'categories': {}
+            }
+            ls.setItem('settings', JSON.stringify(baseSettings));
+        }
+
+        $scope.settings = JSON.parse(ls.getItem('settings'));
+        $scope.$watch('settings', function() {
+            ls.setItem('settings', JSON.stringify($scope.settings));
+        }, true);
         $scope.openWindow = function() {
             console.log('aaaa')
             window.open('http://apache.org', '_blank', 'location=yes');
@@ -81,7 +94,7 @@ angular.module('starter.controllers', [])
         $scope.settings = JSON.parse(ls.getItem('settings'));
         $scope.$watch('settings', function() {
             ls.setItem('settings', JSON.stringify($scope.settings));
-        }, true)
+        }, true);
         $scope.categories = Categories.all();
     })
     .controller('LoginCtrl', function ($scope) {

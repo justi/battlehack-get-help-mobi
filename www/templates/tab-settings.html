@@ -5,9 +5,25 @@
 
       <ul class="list">
 
-          <div class="item item-divider">
+          <li class="item item-divider">
               Notifications
-          </div>
+          </li>
+          <li class="item item-toggle">Emails
+              <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="settings.notificationEmails">
+                  <div class="track">
+                      <div class="handle"></div>
+                  </div>
+              </label>
+          </li>
+          <li class="item item-toggle">Emergency phone calls
+              <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="settings.phoneCalls">
+                  <div class="track">
+                      <div class="handle"></div>
+                  </div>
+              </label>
+          </li>
       </ul>
       <button ng-click="openWindow()">TEST</button>
   </ion-content>
