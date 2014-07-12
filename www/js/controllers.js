@@ -21,14 +21,15 @@ angular.module('starter.controllers', [])
     })
 
     .controller('RequestsCtrl', function($scope, Users) {
-      $scope.users = Users.all();
+        $scope.users = Users.all();
     })
 
     .controller('RequestDetailsCtrl', function($scope, $stateParams, Users) {
-      $scope.user = Users.get($stateParams.userId);
+        $scope.user = Users.get($stateParams.userId);
     })
 
-    .controller('MyRequestsCtrl', function($scope) {
+    .controller('MyRequestsCtrl', function($scope, Users) {
+        $scope.users = Users.all();
     })
 
     .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {

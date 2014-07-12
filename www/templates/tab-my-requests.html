@@ -1,12 +1,43 @@
-<ion-view title="Add task">
+<ion-view title="Add task/apply">
   <ion-content class="has-header padding">
+
+    <div class="list">
+      <div class="item item-divider">
+        Applied to
+      </div>
+      <a class="item" href="#">
+        Butterfinger {cancel}
+      </a>
+      <a class="item" href="#">
+        Butterfinger {cancel}
+      </a>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        My task
+      </div>
+      <a class="item" href="#">
+        Butterfinger {cancel}
+      </a>
+    </div>
+
+    <div class="list">
+      <h4>Applied to your task</h4>
+
+      <a class="item item-avatar" ng-repeat="user in users" href="#/tab/requests/{{user.id}}">
+        <img src="venkman.jpg">
+        <h2>{{user.name}}</h2>
+        <p>Back off, man. I'm a scientist.</p>
+      </a>
+    </div>
     <ul>
-        <li>Kategoria</li>
-        <li>Tytul taska</li>
-        <li>Szczegoly</li>
-        <li>Punkty - slider</li>
-        <li>Button dodaj / zmien</li>
-        <li>Lista uzytkownikow, ktorzy sie zglosili do tego taska</li>
+      <li>Kategoria</li>
+      <li>Tytul taska</li>
+      <li>Szczegoly</li>
+      <li>Punkty - slider</li>
+      <li>Button dodaj / zmien</li>
+      <li>Lista uzytkownikow, ktorzy sie zglosili do tego taska</li>
     </ul>
   </ion-content>
 </ion-view>
