@@ -32,9 +32,7 @@ angular.module('starter.services', [])
       'Transport',
       'Pet care',
       'Emergency',
-      'Battlehack' +
-          '' +
-          ''
+      'Battlehack'
   ]
 
   return {
