@@ -1,4 +1,22 @@
-<ion-view title="{{task.title}}">
-  <ion-content has-header="true" padding="true">
+<ion-view title="Task.title">
+  <ion-content has-header="true">
+    <div class="list card">
+      <div class="item">
+        <p>task.description</p>
+        <p>task.deadline</p>
+      </div>
+
+      <div class="item item-avatar">
+        <img src="http://placehold.it/48x48">
+        <h2>Author: {{user.name}}</h2>
+        <p>User badges</p>
+      </div>
+      <button class="button button-full button-balanced">
+        Apply
+      </button>
+      <button class="button button-full button-energized">
+        Cancel
+      </button>
+    </div>
   </ion-content>
 </ion-view>
