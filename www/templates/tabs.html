@@ -1,31 +1,44 @@
-<ion-tabs class="tabs-icon-top">
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-side-menu-content>
 
-  <ion-tab title="Map" icon="icon ion-map" href="#/tab/map">
-    <ion-nav-view name="tab-map"></ion-nav-view>
-  </ion-tab>
+    <ion-tabs class="tabs-icon-top">
 
-  <ion-tab title="Users requests" icon="icon ion-pin" href="#/tab/requests">
-    <ion-nav-view name="tab-requests"></ion-nav-view>
-  </ion-tab>
+      <ion-tab title="Map" icon="icon ion-map" href="#/tab/map">
+        <ion-nav-view name="tab-map"></ion-nav-view>
+      </ion-tab>
 
-  <ion-tab title="My requests" icon="icon ion-compose" href="#/tab/my-requests">
-    <ion-nav-view name="tab-my-requests"></ion-nav-view>
-  </ion-tab>
+      <ion-tab title="Users requests" icon="icon ion-pin" href="#/tab/requests">
+        <ion-nav-view name="tab-requests"></ion-nav-view>
+      </ion-tab>
 
-  <ion-tab title="Settings" icon="icon ion-gear-b" href="#/tab/settings">
-    <ion-nav-view name="tab-settings"></ion-nav-view>
-  </ion-tab>
+      <ion-tab title="My requests" icon="icon ion-compose" href="#/tab/my-requests">
+        <ion-nav-view name="tab-my-requests"></ion-nav-view>
+      </ion-tab>
 
-</ion-tabs>
+      <ion-tab title="Settings" icon="icon ion-gear-b" href="#/tab/settings">
+        <ion-nav-view name="tab-settings"></ion-nav-view>
+      </ion-tab>
 
-<ion-slide-box on-slide-changed="slideHasChanged($index)">
-  <ion-slide>
-    <div class="box blue"><h1>BLUE</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box yellow"><h1>YELLOW</h1></div>
-  </ion-slide>
-  <ion-slide>
-    <div class="box pink"><h1>PINK</h1></div>
-  </ion-slide>
-</ion-slide-box>
+    </ion-tabs>
+
+  </ion-side-menu-content>
+
+  <!-- Left menu with categories -->
+  <ion-side-menu side="left" ng-controller="ContentCtrl">
+    <ul class="list">
+      <li class="item item-toggle" ng-repeat="category in categories">
+        {{category.name}}
+        <label class="toggle toggle-assertive">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
+  </ion-side-menu>
+
+</ion-side-menus>
+
+

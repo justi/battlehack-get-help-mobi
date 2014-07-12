@@ -69,4 +69,11 @@ angular.module('starter.controllers', [])
             });
         };
 
+    })
+    .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate) {
+      $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+        $scope.categories = Categories.all();
+      }
     });
+

@@ -23,4 +23,18 @@ angular.module('starter.services', [])
       return users[userId];
     }
   }
+})
+.factory('Categories', function() {
+  var categories = [
+    { id: 0, name: 'Category1' },
+    { id: 1, name: 'Category2' },
+    { id: 2, name: 'Category3' },
+    { id: 3, name: 'Category4' }
+  ];
+
+  return {
+    all: function() {
+      return categories;
+    }
+  }
 });
