@@ -22,6 +22,17 @@
         <span class="input-label">Description</span>
         <input type="text" placeholder="Description" ng-model="myTask.details" />
       </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Deadline
+        </div>
+        <select>
+          <option value="{{15*60*1000}}">15min</option>
+          <option value="{{60*60*1000}}">1h</option>
+          <option value="{{2*60*60*1000}}">2h</option>
+          <option value="{{8*60*60*1000}}">8h</option>
+        </select>
+      </label>
 
       <div class="item item-divider">
         Points
