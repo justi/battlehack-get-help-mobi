@@ -34,22 +34,39 @@ angular.module('starter.controllers', [])
         navigator.geolocation.getCurrentPosition(function (pos) {
             var lat = pos.coords.latitude;
             var lng = pos.coords.longitude;
-            $http.get('http://favourhood.org/api/task').success(function(data){
+            $http({
+                url: 'http://favourhood.org/api/task',
+                method: "GET",
+                params: {
+                    'lat': lat,
+                    'lng': lng,
+                    'types': [] //
+                }
+            }).success(function(data){
                 $rootScope.tasks = data;
             });
         });
     })
 
-    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope) {
+    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http) {
         var taskId = $stateParams.taskId;
-        console.log(taskId);
-        console.log($rootScope.tasks)
+        if(!$rootScope.tasks) {
+            $state.go('tab.requests')
+        }
         for(var i=0; i<$rootScope.tasks.length; ++i) {
             if($rootScope.tasks[i].id == taskId)
             {
                 $scope.task = $rootScope.tasks[i];
             }
         }
+        $scope.apply = function() {
+            $http.post('http://favourhood.org/api/applyg/' + $scope.task.id).success(function(){
+                $state.go('tab.requests');
+            });
+        };
+        $scope.cancel = function() {
+            // TODO
+        };
     })
 
     .controller('UserDetailsCtrl', function($scope, $stateParams, Tasks, Users) {
