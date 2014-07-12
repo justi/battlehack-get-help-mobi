@@ -72,10 +72,16 @@ angular.module('starter.controllers', [])
         var ls = window.localStorage;
 
         if(!ls.getItem('settings')) {
-            ls.setItem('settings', {});
+            var baseSettings = {
+                'categories': {}
+            }
+            ls.setItem('settings', JSON.stringify(baseSettings));
         }
 
-        $scope.settings = ls.getItem('settings');
+        $scope.settings = JSON.parse(ls.getItem('settings'));
+        $scope.$watch('settings', function() {
+            ls.setItem('settings', JSON.stringify($scope.settings));
+        }, true)
         $scope.categories = Categories.all();
     })
     .controller('LoginCtrl', function ($scope) {
