@@ -7,54 +7,56 @@
   </ion-nav-buttons>
   <ion-content class="has-header padding">
     <div class="list" ng-show="show=='add'">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Category
-        </div>
-        <select ng-model="myTask.type">
-          <option ng-repeat="category in categories" value="{{category}}">
-            {{category}}
-          </option>
-        </select>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Title</span>
-        <input type="text" placeholder="Title" ng-model="myTask.title"/>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Description</span>
-        <input type="text" placeholder="Description" ng-model="myTask.details" />
-      </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Deadline
-        </div>
-        <select>
-          <option value="{{15*60*1000}}">15min</option>
-          <option value="{{60*60*1000}}">1h</option>
-          <option value="{{2*60*60*1000}}">2h</option>
-          <option value="{{8*60*60*1000}}">8h</option>
-        </select>
-      </label>
-
-      <div class="item item-divider">
-        Points
-      </div>
-
-      <div class="list">
-        <label class="item item-input item-stacked-label">
-          Points to spend: {{myTask.points}}
+      <form name="addTaskForm">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category
+          </div>
+          <select ng-model="myTask.type" required>
+            <option ng-repeat="category in categories" value="{{category}}">
+              {{category}}
+            </option>
+          </select>
         </label>
-        <div class="item range range-balanced">
-          1
-          <input type="range" name="volume" min="1" max="{{points}}" ng-model="myTask.points" />
-          {{points}}
-        </div>
-      </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="Title" ng-model="myTask.title" required/>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
+          <input type="text" placeholder="Description" ng-model="myTask.details" />
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Deadline
+          </div>
+          <select>
+            <option value="{{15*60*1000}}">15min</option>
+            <option value="{{60*60*1000}}">1h</option>
+            <option value="{{2*60*60*1000}}">2h</option>
+            <option value="{{8*60*60*1000}}">8h</option>
+          </select>
+        </label>
 
-      <button class="button button-full button-balanced" ng-click="add()">
-        <i class="icon ion-plus-round"></i> Add
-      </button>
+        <div class="item item-divider">
+          Points
+        </div>
+
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            Points to spend: {{myTask.points}}
+          </label>
+          <div class="item range range-balanced">
+            1
+            <input type="range" name="volume" min="1" max="{{points}}" ng-model="myTask.points" required/>
+            {{points}}
+          </div>
+        </div>
+
+        <button class="button button-full button-balanced" ng-click="add()" ng-disabled="addTaskForm.$invalid || addTaskForm.$pristine">
+          <i class="icon ion-plus-round"></i> Add
+        </button>
+      </form>
     </div>
 
     <div class="list" ng-show="show=='edit'">
