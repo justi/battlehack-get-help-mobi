@@ -184,6 +184,7 @@ angular.module('starter.controllers', [])
                     $http.defaults.headers.common['X-Token'] = data.login_token;
                     $rootScope.user = {};
                     $rootScope.user.email = $scope.userdata.email;
+                    $rootScope.user.emailHash = data.email_hash;
                     ls.setItem('token', JSON.stringify(data.login_token));
                     $http.get('http://favourhood.org/api/points').success(function(data) {
                         $rootScope.points = data.points;
