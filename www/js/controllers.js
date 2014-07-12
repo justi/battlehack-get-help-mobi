@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
+        $scope.openWindow = function() {
+            console.log('aaaa')
+            window.open('http://apache.org', '_blank', 'location=yes');
+        };
     })
 
     .controller('RequestsCtrl', function($scope, Users) {
@@ -65,6 +69,13 @@ angular.module('starter.controllers', [])
 
     })
     .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
+        var ls = window.localStorage;
+
+        if(!ls.getItem('settings')) {
+            ls.setItem('settings', {});
+        }
+
+        $scope.settings = ls.getItem('settings');
         $scope.categories = Categories.all();
     })
     .controller('LoginCtrl', function ($scope) {
