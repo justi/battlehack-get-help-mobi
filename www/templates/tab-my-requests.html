@@ -64,10 +64,10 @@
         {{myTask.title}}
       </div>
       <div class="item item-avatar">
-        <img ng-src="http://www.gravatar.com/avatar/{{myTask.user.email_hash}}">
+        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}">
         <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
           <p>{{myTask.details}}</p>
-          <p>Deadline: {{deadline}}</p>
+          <p>Deadline: {{myTask.deadline| date : 'medium'}}</p>
           <p>Redeem code: {{myTask.redeem}}
       </div>
 

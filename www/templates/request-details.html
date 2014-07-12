@@ -6,7 +6,7 @@
     <div class="list card">
       <div class="item">
         <p>{{task.details}}</p>
-        <p>Deadline: {{deadline}}</p>
+        <p>Deadline: {{task.deadline|date : 'medium'}}</p>
         <p>Task type: {{task.type}}</p>
       </div>
 
