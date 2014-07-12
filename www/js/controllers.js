@@ -45,8 +45,7 @@ angular.module('starter.controllers', [])
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
-                map.setTilt(45);
-                var marker = new google.maps.Marker({
+                var me = new google.maps.Marker({
                     position: myLatlng,
                     map: map,
                     title: 'Starting point'
@@ -54,6 +53,7 @@ angular.module('starter.controllers', [])
 
                 $scope.map = map;
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                $scope.map.setTilt(45);
                 $ionicLoading.hide();
             }, function (error) {
                 alert('Unable to get location: ' + error.message);
@@ -63,14 +63,12 @@ angular.module('starter.controllers', [])
 
         $scope.init();
 
-        $scope.centerOnMe = function() {
-            navigator.geolocation.getCurrentPosition(function (pos) {
-                $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            });
-        };
-
     })
     .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
         $scope.categories = Categories.all();
-    });
+    })
+    .controller('LoginCtrl', function ($scope) {
+
+    })
+;
 
