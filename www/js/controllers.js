@@ -70,10 +70,7 @@ angular.module('starter.controllers', [])
         };
 
     })
-    .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate) {
-      $scope.toggleLeft = function() {
-        $ionicSideMenuDelegate.toggleLeft();
+    .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
         $scope.categories = Categories.all();
-      }
     });
 
