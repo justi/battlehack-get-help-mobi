@@ -7,11 +7,12 @@
       <div class="item">
         <p>{{task.details}}</p>
         <p>Deadline: {{deadline}}</p>
+        <p>Task type: {{task.type}}</p>
       </div>
 
       <div class="item item-avatar">
-        <img src="http://placehold.it/48x48">
-        <h2>Author: {{task.added.email_hash}}</h2>
+        <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
+        <h2>Author // TODO</h2>
         <p>User badges // TODO</p>
       </div>
       <button class="button button-full button-balanced" ng-hide="task.applied" ng-click="apply()">
