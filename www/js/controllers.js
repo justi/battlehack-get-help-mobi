@@ -217,6 +217,7 @@ angular.module('starter.controllers', [])
         if(ls.getItem('token')) {
             $scope.error = null;
             $http.defaults.headers.common['X-Token'] = JSON.parse(ls.getItem('token'));
+            $rootScope.emailHash = JSON.parse(ls.getItem('emailHash'));
             $http.get('http://favourhood.org/api/points').success(function(data) {
                 $rootScope.points = data.points;
             });
@@ -226,16 +227,13 @@ angular.module('starter.controllers', [])
         $scope.userdata = {
             email:'krzysztof.hasinski@gmail.com'
         };
-        $scope.error = null;
 
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
-                    $scope.error = null;
                     $http.defaults.headers.common['X-Token'] = data.login_token;
-                    $rootScope.user = {};
-                    $rootScope.user.email = $scope.userdata.email;
-                    $rootScope.user.emailHash = data.email_hash;
+                    $rootScope.emailHash = data.email_hash;
+                    ls.setItem('emailHash', JSON.stringify(data.email_hash));
                     ls.setItem('token', JSON.stringify(data.login_token));
                     $http.get('http://favourhood.org/api/points').success(function(data) {
                         $rootScope.points = data.points;
