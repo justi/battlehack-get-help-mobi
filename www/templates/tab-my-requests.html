@@ -1,4 +1,4 @@
-<ion-view title="Add task/apply">
+<ion-view title="{{myTask.saved ? 'My task details' : 'New task'}}">
   <ion-content class="has-header padding">
     <div class="list">
 
@@ -14,11 +14,11 @@
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Title</span>
-        <input type="text" placeholder="Title">
+        <input type="text" placeholder="Title" ng-model="myTask.title"/>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Description</span>
-        <input type="text" placeholder="Description">
+        <input type="text" placeholder="Description" ng-model="myTask.details" />
       </label>
 
       <div class="item item-divider">
@@ -26,10 +26,13 @@
       </div>
 
       <div class="list">
+        <label class="item item-input item-stacked-label">
+          Points to spend: {{myTask.points}}
+        </label>
         <div class="item range range-balanced">
           0
-          <input type="range" name="volume" min="0" max="100" value="33">
-          100
+          <input type="range" name="volume" min="0" max="{{points}}" ng-model="myTask.points" />
+          {{points}}
         </div>
       </div>
 
@@ -38,7 +41,7 @@
       </button>
     </div>
 
-    <div class="list">
+    <div class="list" ng-hide="myTask">
       <div class="item item-divider">
         My task
       </div>
@@ -52,7 +55,7 @@
       </div>
     </div>
 
-    <div class="list">
+    <div class="list" ng-hide="myTask">
       <h4>Applied to your task</h4>
 
       <a class="item item-avatar" ng-repeat="user in users" href="#/tab/requests/{{user.id}}">

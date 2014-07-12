@@ -26,11 +26,16 @@ angular.module('starter.services', [])
 })
 .factory('Categories', function() {
   var categories = [
-    { id: 0, name: 'Category1' },
-    { id: 1, name: 'Category2' },
-    { id: 2, name: 'Category3' },
-    { id: 3, name: 'Category4' }
-  ];
+      'Babysitting',
+      'Moving in/out',
+      'Groceries',
+      'Transport',
+      'Pet care',
+      'Emergency',
+      'Battlehack' +
+          '' +
+          ''
+  ]
 
   return {
     all: function() {

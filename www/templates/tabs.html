@@ -16,7 +16,7 @@
         <ion-nav-view name="tab-requests"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Add task" icon="icon ion-compose" href="#/tab/my-requests">
+      <ion-tab title="My task" icon="icon ion-compose" href="#/tab/my-requests">
         <ion-nav-view name="tab-my-requests"></ion-nav-view>
       </ion-tab>
 
@@ -30,9 +30,9 @@
   <ion-side-menu side="left" ng-controller="ContentCtrl">
     <ul class="list">
       <li class="item item-toggle" ng-repeat="category in categories">
-        {{category.name}}
+        {{category}}
         <label class="toggle toggle-assertive">
-           <input type="checkbox" ng-model="settings.categories[category.name]">
+           <input type="checkbox" ng-model="settings.categories[category]">
            <div class="track">
              <div class="handle"></div>
            </div>

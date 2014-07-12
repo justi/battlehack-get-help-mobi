@@ -5,8 +5,17 @@ angular.module('starter.controllers', [])
 
         if(!ls.getItem('settings')) {
             var baseSettings = {
-                'categories': {}
+                'categories': {
+                    'Babysitting': true,
+                    'Moving in/out': true,
+                    'Groceries': true,
+                    'Transport': true,
+                    'Pet care': true,
+                    'Emergency': true,
+                    'BattleHack': true
+                }
             }
+            console.log(baseSettings);
             ls.setItem('settings', JSON.stringify(baseSettings));
         }
 
@@ -30,6 +39,11 @@ angular.module('starter.controllers', [])
     .controller('MyRequestsCtrl', function($scope, Users, Categories) {
         $scope.users = Users.all();
         $scope.categories = Categories.all();
+        $scope.myTask = {
+            points: 0,
+            title: '',
+            details: ''
+        };
     })
 
     .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
@@ -93,7 +107,15 @@ angular.module('starter.controllers', [])
 
         if(!ls.getItem('settings')) {
             var baseSettings = {
-                'categories': {}
+                'categories': {
+                    'Babysitting': true,
+                    'Moving in/out': true,
+                    'Groceries': true,
+                    'Transport': true,
+                    'Pet care': true,
+                    'Emergency': true,
+                    'BattleHack': true
+                }
             }
             ls.setItem('settings', JSON.stringify(baseSettings));
         }
@@ -113,10 +135,12 @@ angular.module('starter.controllers', [])
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
-                    console.log(data);
                     $scope.error = null;
                     $rootScope.userdata = data;
-                    $http.defaults.headers.common.Authorization = "Token "+ data.login_token;
+                    $http.defaults.headers.common['X-Token'] = data.login_token;
+                    $http.get('http://favourhood.org/api/points').success(function(data) {
+                        $rootScope.points = data.points;
+                    });
                     $state.go('tab.map');
                 })
                 .error(function() {
