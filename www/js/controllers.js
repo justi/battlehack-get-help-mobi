@@ -45,12 +45,18 @@ angular.module('starter.controllers', [])
         $scope.myTask = null;
         $scope.show = null;
         $scope.categories = Categories.all();
+
+        $scope.delete = function() {
+            $http.post('http://favourhood.org/api/task/delete').success(function(){
+                $state.go($state.current, {}, {reload: true});
+            });
+        }
         $http.get('http://favourhood.org/api/task/my').success(function(data){
-            if(data) {
+            if(data!='null') {
                 $scope.show='edit';
                 $scope.myTask = data;
             } else {
-                $scope.show='add'
+                $scope.show='add';
                 $scope.users = Users.all();
                 $scope.myTask = {
                     points: 1,
