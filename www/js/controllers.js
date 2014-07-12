@@ -127,6 +127,16 @@ angular.module('starter.controllers', [])
         $scope.categories = Categories.all();
     })
     .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
+        var ls = window.localStorage;
+        if(ls.getItem('token')) {
+            $scope.error = null;
+            $http.defaults.headers.common['X-Token'] = JSON.parse(ls.getItem('token'));
+            $http.get('http://favourhood.org/api/points').success(function(data) {
+                $rootScope.points = data.points;
+            });
+            $state.go('tab.map');
+        }
+
         $scope.userdata = {
             email:'krzysztof.hasinski@gmail.com'
         };
@@ -136,8 +146,8 @@ angular.module('starter.controllers', [])
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
                     $scope.error = null;
-                    $rootScope.userdata = data;
                     $http.defaults.headers.common['X-Token'] = data.login_token;
+                    ls.setItem('token', JSON.stringify(data.login_token));
                     $http.get('http://favourhood.org/api/points').success(function(data) {
                         $rootScope.points = data.points;
                     });
