@@ -1,7 +1,6 @@
 <ion-side-menus>
   <!-- Center content -->
   <ion-side-menu-content>
-
       <ion-nav-bar class="bar-stable nav-title-slide-ios7">
           <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
               Back
@@ -24,14 +23,11 @@
       <ion-tab title="Settings" icon="icon ion-gear-b" href="#/tab/settings">
         <ion-nav-view name="tab-settings"></ion-nav-view>
       </ion-tab>
-
     </ion-tabs>
-
   </ion-side-menu-content>
 
   <!-- Left menu with categories -->
   <ion-side-menu side="left" ng-controller="ContentCtrl">
-      
     <ul class="list">
       <li class="item item-toggle" ng-repeat="category in categories">
         {{category.name}}
@@ -44,7 +40,6 @@
       </li>
     </ul>
   </ion-side-menu>
-
 </ion-side-menus>
 
 
