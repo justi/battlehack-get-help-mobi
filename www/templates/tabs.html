@@ -32,7 +32,8 @@
       <li class="item item-divider">
         Categories
       </li>
-      <li class="item item-toggle" ng-repeat="category in categories">
+      <li class="item item-toggle categories-images" ng-repeat="category in categories">
+        <img src="http://placehold.it/32x32">
         {{category}}
         <label class="toggle toggle-assertive">
            <input type="checkbox" ng-model="settings.categories[category]">
@@ -53,7 +54,6 @@
       <p><img ng-src={{avatarSrc}}> Email: {{user.email}}</p>
       <img src="http://placehold.it/108x108" class:"points-icon float-left"><h1 class="points-title">{{points}}</h1>
     </div>
-
 
     <div ng-repeat="badge in badges">
       <div class="item item-divider">
