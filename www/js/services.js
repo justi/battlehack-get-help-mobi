@@ -59,4 +59,23 @@ angular.module('starter.services', [])
       return tasks[taskId];
     }
   }
+})
+.factory('Badges', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var badges = [
+    { id: 0, userId: 0, name: 'Badge lvl1'},
+    { id: 1, userId: 0, name: 'Badge lvl2'}
+  ];
+
+  return {
+    all: function() {
+      return badges;
+    },
+    get: function(badgeId) {
+      // Simple index lookup
+      return badges[badgeId];
+    }
+  }
 });

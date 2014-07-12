@@ -105,9 +105,8 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
             }
         );
-
     })
-    .controller('ContentCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
+    .controller('LeftSlideCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
         var ls = window.localStorage;
 
         if(!ls.getItem('settings')) {
@@ -130,6 +129,9 @@ angular.module('starter.controllers', [])
             ls.setItem('settings', JSON.stringify($scope.settings));
         }, true);
         $scope.categories = Categories.all();
+    })
+    .controller('RightSlideCtrl', function($scope, $ionicSideMenuDelegate, Badges) {
+        $scope.badges = Badges.all();
     })
     .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
         var ls = window.localStorage;
