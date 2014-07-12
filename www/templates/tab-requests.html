@@ -7,20 +7,20 @@
   </ion-nav-buttons>
   <ion-content class="has-header padding">
 
-    <div class="list">
+    <div class="list" ng-show="show">
       <div class="item item-divider">
         Applied to
       </div>
-      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks">
+      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:true}">
         <img src="http://placehold.it/32x32">
         <h2>{{task.title}}</h2>
         <p>{{task.details|limitTo:40}}&hellip;</p>
       </a>
     </div>
 
-    <div class="list">
+    <div class="list" ng-show="show">
       <h4>Tasks</h4>
-      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks">
+      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:false}">
         <img src="http://placehold.it/32x32">
         <h2>{{task.title}}</h2>
         <p>{{task.details|limitTo:40}}&hellip;</p>

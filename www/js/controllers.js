@@ -27,7 +27,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope) {
+    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope, $ionicLoading) {
+        $scope.show = false;
+        $scope.loading = $ionicLoading.show({
+            content: 'Getting current location&hellip;',
+            showBackdrop: false
+        });
         $scope.users = Users.all();
         $rootScope.tasks = [];
 
@@ -44,8 +49,17 @@ angular.module('starter.controllers', [])
                 }
             }).success(function(data){
                 $rootScope.tasks = data;
+                $scope.show = true;
+                $ionicLoading.hide();
             });
         });
+
+        $scope.$on(
+            "$destroy",
+            function() {
+                $ionicLoading.hide();
+            }
+        );
     })
 
     .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http) {
@@ -60,7 +74,7 @@ angular.module('starter.controllers', [])
             }
         }
         $scope.apply = function() {
-            $http.post('http://favourhood.org/api/applyg/' + $scope.task.id).success(function(){
+            $http.post('http://favourhood.org/api/apply/' + $scope.task.id).success(function(){
                 $state.go('tab.requests');
             });
         };
