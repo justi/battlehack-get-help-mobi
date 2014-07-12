@@ -177,7 +177,7 @@ angular.module('starter.controllers', [])
             email:'krzysztof.hasinski@gmail.com'
         };
         $scope.error = null;
-        $scope.test = function() { $state.go('tab-map'); }
+        
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
