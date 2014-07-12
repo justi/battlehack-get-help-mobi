@@ -40,4 +40,23 @@ angular.module('starter.services', [])
       return categories;
     }
   }
+})
+.factory('Tasks', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var tasks = [
+    { id: 0, userId: 0, name: 'Task0' },
+    { id: 1, userId: 1, name: 'Task1' }
+  ];
+
+  return {
+    all: function() {
+      return tasks;
+    },
+    get: function(taskId) {
+      // Simple index lookup
+      return tasks[taskId];
+    }
+  }
 });

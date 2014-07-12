@@ -36,6 +36,11 @@ angular.module('starter.controllers', [])
         $scope.user = Users.get($stateParams.userId);
     })
 
+    .controller('UserDetailsCtrl', function($scope, $stateParams, Tasks, Users) {
+        //$scope.task = Tasks.get($stateParams.taskId);
+        $scope.user = Users.get($stateParams.userId);
+    })
+
     .controller('MyRequestsCtrl', function($scope, Users, Categories) {
         $scope.users = Users.all();
         $scope.categories = Categories.all();
