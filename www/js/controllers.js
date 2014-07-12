@@ -41,18 +41,29 @@ angular.module('starter.controllers', [])
         $scope.user = Users.get($stateParams.userId);
     })
 
-    .controller('MyRequestsCtrl', function($scope, Users, Categories) {
+    .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state) {
         $scope.users = Users.all();
         $scope.categories = Categories.all();
         $scope.myTask = {
-            points: 0,
+            points: 1,
             title: '',
             details: ''
         };
+        $scope.add = function() {
+
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                $scope.myTask.lat = pos.coords.latitude;
+                $scope.myTask.lng = pos.coords.longitude;
+                $scope.myTask.deadline = Date.now() + (3600 * 1000);
+
+                $http.post('http://favourhood.org/api/task', $scope.myTask).success(function(data) {
+                    $state.reload();
+                });
+            });
+        }
     })
 
     .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
-
 
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',

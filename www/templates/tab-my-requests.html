@@ -11,9 +11,9 @@
         <div class="input-label">
           Category
         </div>
-        <select>
+        <select ng-model="type">
           <option ng-repeat="category in categories">
-            {{category.name}}
+            {{category}}
           </option>
         </select>
       </label>
@@ -47,7 +47,7 @@
         </label>
         <div class="item range range-balanced">
           0
-          <input type="range" name="volume" min="0" max="{{points}}" ng-model="myTask.points" />
+          <input type="range" name="volume" min="1" max="{{points}}" ng-model="myTask.points" />
           {{points}}
         </div>
       </div>
