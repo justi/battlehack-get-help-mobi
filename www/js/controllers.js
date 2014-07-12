@@ -29,18 +29,19 @@ angular.module('starter.controllers', [])
                 var mapOptions = {
                     center: myLatlng,
                     zoom: 18,
+                    minZoom: 13,
                     panControl: false,
                     zoomControl: true,
                     mapTypeControl: true,
                     scaleControl: true,
-                    streetViewControl: true,
-                    overviewMapControl: true,
+                    streetViewControl: false,
+                    overviewMapControl: false,
                     mapTypeControlOptions: {
                         mapTypeIds: [
                             google.maps.MapTypeId.ROADMAP,
                             google.maps.MapTypeId.HYBRID]
                     },
-                    mapTypeId: 'hybrid'
+                    mapTypeId: google.maps.MapTypeId.HYBRID
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
@@ -53,10 +54,10 @@ angular.module('starter.controllers', [])
 
                 $scope.map = map;
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                $scope.loading.hide();
+                $ionicLoading.hide();
             }, function (error) {
                 alert('Unable to get location: ' + error.message);
-                $scope.loading.hide();
+                $ionicLoading.hide();
             });
         };
 
