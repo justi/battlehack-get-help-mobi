@@ -19,6 +19,10 @@
   float: left;
 }
 
+.float-right {
+  float: right;
+}
+
 .points-icon.float-left {
   width: 92px;
 }
@@ -39,4 +43,11 @@ h1.points-title{
 
 .categories-images img {
   padding-right: 10px;
+}
+
+p.task-points {
+  font-size: 1.2em;
+  vertical-align: top;
+  margin-bottom: -1px;
+  line-height: 1.7em;
 }
