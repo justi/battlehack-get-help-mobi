@@ -48,7 +48,7 @@ angular.module('starter.services', [])
       'Groceries' : 'groceries',
       'Transport' : 'transport',
       'Pet care' : 'pet-care',
-      'Emergency' : '',
+      'Emergency' : 'emergency',
       'Battlehack' : ''
   }
 

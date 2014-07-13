@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
             // TODO
         };
 
-        $scope.getCategoryImage = function() {
+        $scope.getCategoryImage = function(param) {
             return CategoryImage.getCategoryByName(param);
         };
     })
