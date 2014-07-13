@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('MapCtrl', function ($scope, $ionicLoading, $http, $rootScope) {
+    .controller('MapCtrl', function ($scope, $ionicLoading, $http, $rootScope, CategoryImage) {
 
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',
@@ -160,11 +160,20 @@ angular.module('starter.controllers', [])
                     $rootScope.tasks = data;
                     for(var i=0; i<data.length;++i) {
                         var task = data[i];
-                        var point = new google.maps.Marker({
-                            position: new google.maps.LatLng(task.lat, task.lng),
-                            map: map,
-                            title: task.title
-                        });
+                        if(task.type) {
+                            var point = new google.maps.Marker({
+                                position: new google.maps.LatLng(task.lat, task.lng),
+                                map: map,
+                                title: task.title,
+                                icon: '/img/'+CategoryImage.getCategoryByName(task.type)
+                            });
+                        } else {
+                            var point = new google.maps.Marker({
+                                position: new google.maps.LatLng(task.lat, task.lng),
+                                map: map,
+                                title: task.title
+                            });
+                        }
                     }
                     $scope.show = true;
                 });
@@ -211,8 +220,6 @@ angular.module('starter.controllers', [])
         }, true);
         $scope.categories = Categories.all();
         $scope.getCategoryImage = function(param) {
-            console.log(param);
-            console.log(CategoryImage.getCategoryByName(param));
             return CategoryImage.getCategoryByName(param);
         };
     })
