@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
         $scope.openWindow = function() {
-            window.open('http://apache.org', '_blank', 'location=yes');
+            window.open('http://favourhood.org/donate?email_hash=' + $scope.emailHash, '_blank', 'location=yes');
         };
     })
 
