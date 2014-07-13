@@ -5,16 +5,16 @@
   <ion-content has-header="true">
     <div class="list card">
       <div class="item">
-        <img ng-src="img/{{getCategoryImage(task.type)}}">
+        <p>Task type: {{task.type}} <img ng-src="img/{{getCategoryImage(task.type)}}"></p>
         <p>{{task.details}}</p>
         <p>Deadline: {{task.deadline|date : 'medium'}}</p>
-        <p>Task type: {{task.type}}</p>
+        <p>Call for details:</p>
+        <a href="tel:618 803 551" class="button ion-android-call button-balanced"> 618 803 551</a>
+
       </div>
 
       <div class="item item-avatar">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
-        <h2>Author // TODO</h2>
-        <p>User badges // TODO</p>
       </div>
       <button class="button button-full button-balanced" ng-hide="task.applied" ng-click="apply()">
         Apply

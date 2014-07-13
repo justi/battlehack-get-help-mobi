@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
         $scope.openWindow = function() {
-            window.open('http://apache.org', '_blank', 'location=yes');
+            window.open('http://favourhood.org/donate?email_hash=' + $scope.emailHash, '_blank', 'location=yes');
         };
     })
 
@@ -15,7 +15,10 @@ angular.module('starter.controllers', [])
 
         $rootScope.tasks = [];
 
-        navigator.geolocation.getCurrentPosition(function (pos) {
+            var pos = {};
+            pos.coords = {};
+            pos.coords.latitude = 52.2684177;
+            pos.coords.longitude = 20.9895862;
             var lat = pos.coords.latitude;
             var lng = pos.coords.longitude;
             $http({
@@ -31,7 +34,6 @@ angular.module('starter.controllers', [])
                 $scope.show = true;
                 $ionicLoading.hide();
             });
-        });
 
         $scope.$on(
             "$destroy",
@@ -103,7 +105,10 @@ angular.module('starter.controllers', [])
             }
         });
         $scope.add = function() {
-            navigator.geolocation.getCurrentPosition(function (pos) {
+                var pos = {};
+                pos.coords = {};
+                pos.coords.latitude = 52.2684177;
+                pos.coords.longitude = 20.9895862;
                 $scope.myTask.lat = pos.coords.latitude;
                 $scope.myTask.lng = pos.coords.longitude;
                 $scope.myTask.deadline = Date.now() + (15 * 60 * 1000);
@@ -112,7 +117,6 @@ angular.module('starter.controllers', [])
                         $state.go($state.current, {}, {reload: true});
                     });
                 });
-            }, function(err) { console.log(err); });
         }
         $scope.approve = function(userId) {
             console.log(userId);
@@ -133,7 +137,10 @@ angular.module('starter.controllers', [])
         });
 
         $scope.init = function () {
-            navigator.geolocation.getCurrentPosition(function (pos) {
+                var pos = {};
+                pos.coords = {};
+                pos.coords.latitude = 52.2684177;
+                pos.coords.longitude = 20.9895862;
                 var myLatlng = new google.maps.LatLng(52.2684177, 20.9895862);
 
                 var mapOptions = {
@@ -151,7 +158,7 @@ angular.module('starter.controllers', [])
                             google.maps.MapTypeId.ROADMAP,
                             google.maps.MapTypeId.HYBRID]
                     },
-                    mapTypeId: google.maps.MapTypeId.HYBRID
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
@@ -167,33 +174,39 @@ angular.module('starter.controllers', [])
                 }).success(function(data){
                     $rootScope.tasks = data;
                     for(var i=0; i<data.length;++i) {
-                        var task = data[i];
-                        if(task.type) {
-                            var point = new google.maps.Marker({
-                                position: new google.maps.LatLng(task.lat, task.lng),
-                                map: map,
-                                title: task.title,
-                                icon: 'img/'+CategoryImage.getCategoryByName(task.type)
-                            });
-                        } else {
-                            var point = new google.maps.Marker({
-                                position: new google.maps.LatLng(task.lat, task.lng),
-                                map: map,
-                                title: task.title
-                            });
-                        }
+                        (function(task) {
+                            if(task.type) {
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: '<div class="marker-popup"><h3>'+
+                                        '<a href="#/tab/requests/' + task.id + '">' + task.title +
+                                        '</h3></a></div>'
+                                });
+
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(task.lat, task.lng),
+                                    map: map,
+                                    title: task.title,
+                                    icon: 'img/'+CategoryImage.getCategoryByName(task.type)
+                                });
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infowindow.open(map, marker);
+                                });
+
+                            } else {
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(task.lat, task.lng),
+                                    map: map,
+                                    title: task.title
+                                });
+                            }
+                        }(data[i]));
                     }
                     $scope.show = true;
                 });
 
                 $scope.map = map;
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                $scope.map.setTilt(45);
                 $ionicLoading.hide();
-            }, function (error) {
-                alert('Unable to get location: ' + error.message);
-                $ionicLoading.hide();
-            });
         };
 
         $scope.init();

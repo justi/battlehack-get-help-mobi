@@ -49,9 +49,30 @@ h1.points-title{
   padding-right: 10px;
 }
 
+.margin-top {
+  margin-top: 12px;
+}
+
 p.task-points {
   font-size: 1.2em;
   vertical-align: top;
   margin-bottom: -1px;
   line-height: 1.7em;
+}
+.marker-popup a {
+  font-size: 1em;
+  text-decoration: none;
+  padding: 5px;
+  color: #999;
+}
+
+.marker-popup a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+.badges  .col img {
+  width: 85px;
+  padding: 0px;
+  margin: 0px;
 }

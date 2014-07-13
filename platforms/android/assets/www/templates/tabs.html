@@ -20,7 +20,7 @@
         <ion-nav-view name="tab-my-requests"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Settings" icon="icon ion-gear-b" href="#/tab/settings">
+      <ion-tab title="Misc" icon="icon ion-gear-b" href="#/tab/settings">
         <ion-nav-view name="tab-settings"></ion-nav-view>
       </ion-tab>
     </ion-tabs>
@@ -54,14 +54,26 @@
       <img src="img/icon/point_108.png" class="points-icon float-left"><h1 class="points-title">{{points}}</h1>
     </div>
 
-    <div ng-repeat="badge in badges">
+    <div class="badges">
       <div class="item item-divider">
-        Badge category
+        Pet care
       </div>
       <div class="item item-toggle row padding-left" > <!-- badges category in badges categories -->
-        <div class="col"><img src="http://placehold.it/48x48"></div>
-        <div class="col"><img src="http://placehold.it/48x48"></div>
-        <div class="col"><img src="http://placehold.it/48x48"></div>
+        <div class="col"><img src="img/badges/doggy-1.png"></div>
+        <div class="col"><img src="img/badges/doggy-2.png"></div>
+        <div class="col"><img src="img/badges/doggy-3.png"></div>
+      </div>
+      <div class="item item-divider">
+        Shopping
+      </div>
+      <div class="item item-toggle row padding-left" > <!-- badges category in badges categories -->
+        <div class="col"><img src="img/badges/shopping.png"></div>
+      </div>
+      <div class="item item-divider">
+        Special
+      </div>
+      <div class="item item-toggle row padding-left" > <!-- badges category in badges categories -->
+        <div class="col"><img src="img/badges/battleaxe.png"></div>
       </div>
     </div>
   </ion-side-menu>

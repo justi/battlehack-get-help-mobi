@@ -1,30 +1,16 @@
-<ion-view title="Settings">
+<ion-view title="Misc">
     <ion-nav-bar class="bar-stable nav-title-slide-ios7">
     </ion-nav-bar>
   <ion-content class="has-header padding">
-
-      <ul class="list">
-
-          <li class="item item-divider">
-              Notifications
-          </li>
-          <li class="item item-toggle">Emails
-              <label class="toggle toggle-assertive">
-                  <input type="checkbox" ng-model="settings.notificationEmails">
-                  <div class="track">
-                      <div class="handle"></div>
-                  </div>
-              </label>
-          </li>
-          <li class="item item-toggle">Emergency phone calls
-              <label class="toggle toggle-assertive">
-                  <input type="checkbox" ng-model="settings.phoneCalls">
-                  <div class="track">
-                      <div class="handle"></div>
-                  </div>
-              </label>
-          </li>
-      </ul>
-      <button ng-click="openWindow()">TEST</button>
+    <ul class="list">
+      <li class="item item-divider">
+          Support charity
+      </li>
+      <li class="item center-content">
+        <a ng-click="openWindow()">
+          <img src="https://braintree-badges.s3.amazonaws.com/05.png" border="0"/>
+        </a>
+      </li>
+    </ul>
   </ion-content>
 </ion-view>

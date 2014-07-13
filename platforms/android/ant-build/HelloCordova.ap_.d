@@ -64,10 +64,17 @@
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/README.md \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/css/style.css \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/favourhood-logo.png \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/icon \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/ionic.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/battleaxe.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/doggy-1.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/doggy-2.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/doggy-3.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/furniture.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/badges/shopping.png \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/babysitting.png \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/battlehack.png \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/emergency.png \

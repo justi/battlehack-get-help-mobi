@@ -21,7 +21,6 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <icon src="img/favourhood-logo.png" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
