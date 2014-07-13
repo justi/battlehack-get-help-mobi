@@ -83,9 +83,12 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('UserDetailsCtrl', function($scope, $stateParams, Tasks, Users) {
-        //$scope.task = Tasks.get($stateParams.taskId);
-        $scope.user = Users.get($stateParams.userId);
+    .controller('UserDetailsCtrl', function($scope, $stateParams, $http, Tasks, Users) {
+        $scope.approve = function() {
+            $http.post('http://favourhood.org/api/accept/', {'user_id': $stateParams.userId}).success(function(){
+                $state.go('tab.my-requests');
+            });
+        };
     })
 
     .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state) {
