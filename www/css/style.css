@@ -70,3 +70,9 @@ p.task-points {
   text-decoration: underline;
   color: #333;
 }
+
+.badges  .col img {
+  width: 85px;
+  padding: 0px;
+  margin: 0px;
+}
