@@ -16,6 +16,8 @@ angular.module('starter.controllers', [])
         $rootScope.tasks = [];
 
         navigator.geolocation.getCurrentPosition(function (pos) {
+            pos.coords.latitude = 52.2684177;
+            pos.coords.longitude = 20.9895862;
             var lat = pos.coords.latitude;
             var lng = pos.coords.longitude;
             $http({
@@ -104,6 +106,8 @@ angular.module('starter.controllers', [])
         });
         $scope.add = function() {
             navigator.geolocation.getCurrentPosition(function (pos) {
+                pos.coords.latitude = 52.2684177;
+                pos.coords.longitude = 20.9895862;
                 $scope.myTask.lat = pos.coords.latitude;
                 $scope.myTask.lng = pos.coords.longitude;
                 $scope.myTask.deadline = Date.now() + (15 * 60 * 1000);
@@ -134,6 +138,8 @@ angular.module('starter.controllers', [])
 
         $scope.init = function () {
             navigator.geolocation.getCurrentPosition(function (pos) {
+                pos.coords.latitude = 52.2684177;
+                pos.coords.longitude = 20.9895862;
                 var myLatlng = new google.maps.LatLng(52.2684177, 20.9895862);
 
                 var mapOptions = {
@@ -151,7 +157,7 @@ angular.module('starter.controllers', [])
                             google.maps.MapTypeId.ROADMAP,
                             google.maps.MapTypeId.HYBRID]
                     },
-                    mapTypeId: google.maps.MapTypeId.HYBRID
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
