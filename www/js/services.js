@@ -54,7 +54,7 @@ angular.module('starter.services', [])
 
   return {
     getCategoryByName: function (categoryName) {
-      categories[categoryName] != null ? 'category/' + categories[categoryName] + '.png' : '#'
+      return categories[categoryName] != null ? 'category/' + categories[categoryName] + '.png' : '#'
     }
   }
 }).factory('Tasks', function() {

@@ -33,8 +33,8 @@
         Categories
       </li>
       <li class="item item-toggle categories-images" ng-repeat="category in categories">
-        <img src="http://placehold.it/32x32">
-        {{getCategoryImage(category)}}
+        <img ng-src="/img/{{getCategoryImage(category)}}">
+        {{category}}
         <label class="toggle toggle-assertive">
            <input type="checkbox" ng-model="settings.categories[category]">
            <div class="track">
