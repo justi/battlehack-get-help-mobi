@@ -167,21 +167,32 @@ angular.module('starter.controllers', [])
                 }).success(function(data){
                     $rootScope.tasks = data;
                     for(var i=0; i<data.length;++i) {
-                        var task = data[i];
-                        if(task.type) {
-                            var point = new google.maps.Marker({
-                                position: new google.maps.LatLng(task.lat, task.lng),
-                                map: map,
-                                title: task.title,
-                                icon: 'img/'+CategoryImage.getCategoryByName(task.type)
-                            });
-                        } else {
-                            var point = new google.maps.Marker({
-                                position: new google.maps.LatLng(task.lat, task.lng),
-                                map: map,
-                                title: task.title
-                            });
-                        }
+                        (function(task) {
+                            if(task.type) {
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: '<div id="content"><h3>'+
+                                        '<a href="#/tab/requests/' + task.id + '">' + task.title +
+                                        '</h3></a></div>'
+                                });
+
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(task.lat, task.lng),
+                                    map: map,
+                                    title: task.title,
+                                    icon: 'img/'+CategoryImage.getCategoryByName(task.type)
+                                });
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infowindow.open(map, marker);
+                                });
+
+                            } else {
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(task.lat, task.lng),
+                                    map: map,
+                                    title: task.title
+                                });
+                            }
+                        }(data[i]));
                     }
                     $scope.show = true;
                 });
