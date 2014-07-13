@@ -176,7 +176,6 @@ angular.module('starter.controllers', [])
                     $rootScope.tasks = data;
                     for(var i=0; i<data.length;++i) {
                         var task = data[i];
-                        console.log(task);
                         var point = new google.maps.Marker({
                             position: new google.maps.LatLng(task.lat, task.lng),
                             map: map,
