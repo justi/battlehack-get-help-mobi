@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope, $ionicLoading) {
+    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope, $ionicLoading, CategoryImage) {
         $scope.show = false;
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',
@@ -39,9 +39,12 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
             }
         );
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
 
-    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http) {
+    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http, CategoryImage) {
         var taskId = $stateParams.taskId;
         if(!$rootScope.tasks) {
             $state.go('tab.requests')
@@ -60,17 +63,13 @@ angular.module('starter.controllers', [])
         $scope.cancel = function() {
             // TODO
         };
-    })
 
-    .controller('UserDetailsCtrl', function($scope, $stateParams, $http, Tasks, Users) {
-        $scope.approve = function() {
-            $http.post('http://favourhood.org/api/accept/', {'user_id': $stateParams.userId}).success(function(){
-                $state.go('tab.my-requests');
-            });
+        $scope.getCategoryImage = function() {
+            return CategoryImage.getCategoryByName(param);
         };
     })
 
-    .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state) {
+    .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state, $stateParams, CategoryImage) {
         $scope.myTask = null;
         $scope.show = null;
         $scope.categories = Categories.all();
@@ -115,6 +114,15 @@ angular.module('starter.controllers', [])
                 });
             }, function(err) { console.log(err); });
         }
+        $scope.approve = function(userId) {
+            console.log(userId);
+            $http.post('http://favourhood.org/api/accept/', {'user_id': userId}).success(function(){
+                $state.go('tab.my-requests', {}, {reload:true});
+            });
+        };
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
 
     .controller('MapCtrl', function ($scope, $ionicLoading, $http, $rootScope, CategoryImage) {

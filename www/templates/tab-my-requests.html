@@ -64,6 +64,7 @@
         {{myTask.title}}
       </div>
       <div class="item item-avatar">
+        <img ng-src="/img/{{getCategoryImage(myTask.type)}}">
         <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}">
         <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
           <p>{{myTask.details}}</p>
@@ -79,8 +80,10 @@
 
     <div class="list" ng-show="show=='edit'">
       <h4>Applied to your task</h4>
-
-      <a class="item item-avatar" ng-repeat="user in applied"  href="#/tab/users/{{user.id}}">
+      <a class="item item-avatar" ng-repeat="user in applied">
+        <button class="button button-full button-balanced" ng-click="approve(user.email_hash)">
+          Approve for this task
+        </button>
         <img src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
       </a>
     </div>

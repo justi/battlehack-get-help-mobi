@@ -13,6 +13,8 @@
       </div>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{accepted:true}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
+
+        <img ng-src="/img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>
@@ -25,6 +27,7 @@
       </div>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:true}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
+        <img ng-src="/img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>
@@ -35,6 +38,7 @@
       <h4>Tasks</h4>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:false}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
+        <img ng-src="/img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>

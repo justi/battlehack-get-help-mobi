@@ -5,6 +5,7 @@
   <ion-content has-header="true">
     <div class="list card">
       <div class="item">
+        <img ng-src="/img/{{getCategoryImage(task.type)}}">
         <p>{{task.details}}</p>
         <p>Deadline: {{task.deadline|date : 'medium'}}</p>
         <p>Task type: {{task.type}}</p>
