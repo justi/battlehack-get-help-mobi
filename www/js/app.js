@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.user-details', {
-      url: '/requests/:taskId/:userId',
+      url: '/users/:userId',
       views: {
         'tab-my-requests': {
           templateUrl: 'templates/user-details.html',

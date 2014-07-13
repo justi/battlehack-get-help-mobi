@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,9 +18,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $rootScope.$on('needLogin', function(){
+        $state.go('login');
+    })
   });
 })
+.config(function($httpProvider) {
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+})
 
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push(['$rootScope', '$q', '$injector', function($rootScope, $q) {
+        return {
+            responseError: function(rejection) {
+                if (rejection.status === 403) {
+                    $rootScope.$emit('needLogin');
+                }
+                // otherwise, default behaviour
+                return $q.reject(rejection);
+            }
+        };
+    }])
+}])
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -57,11 +77,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.request-details', {
-      url: '/requests/:userId',
+      url: '/requests/:taskId',
       views: {
         'tab-requests': {
           templateUrl: 'templates/request-details.html',
           controller: 'RequestDetailsCtrl'
+        }
+      }
+    })
+
+    .state('tab.user-details', {
+      url: '/requests/:taskId/:userId',
+      views: {
+        'tab-my-requests': {
+          templateUrl: 'templates/user-details.html',
+          controller: 'UserDetailsCtrl'
         }
       }
     })
@@ -86,19 +116,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-
-    .state('tab.login', {
-          url: '/login',
-          views: {
-              'tab-settings': {
-                  templateUrl: 'templates/tab-login.html',
-                  controller: 'LoginCtrl'
-              }
-          }
-    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+      }
+    )
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/map');
+  $urlRouterProvider.otherwise('/login');
 
 });
 

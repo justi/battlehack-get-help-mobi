@@ -64,11 +64,13 @@
         {{myTask.title}}
       </div>
       <div class="item item-avatar">
-        <img src="http://placehold.it/32x32">
+        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}">
         <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
           <p>{{myTask.details}}</p>
-          <p>Deadline: {{deadline}}</p>
+          <p>Deadline: {{myTask.deadline| date : 'medium'}}</p>
+          <p>Redeem code: {{myTask.redeem}}
       </div>
+
       <button class="button button-assertive button-full" ng-click="delete()">
         Delete task
       </button>
@@ -77,9 +79,8 @@
     <div class="list" ng-show="show=='edit'">
       <h4>Applied to your task</h4>
 
-      <a class="item item-avatar" ng-repeat="user in applied">
-        <img src="http://placehold.it/32x32" />
-        <h2>{{user.email_hash}}</h2>
+      <a class="item item-avatar" ng-repeat="user in applied"  href="#/tab/users/{{user.id}}">
+        <img src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
       </a>
     </div>
   </ion-content>

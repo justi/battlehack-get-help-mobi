@@ -2,11 +2,29 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="user in users" type="item-text-wrap" href="#/tab/requests/{{user.id}}">
-        {{user.name}}
-      </ion-item>
-    </ion-list>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class="points-icon">{{points}}</button>
+  </ion-nav-buttons>
+  <ion-content class="has-header padding">
+
+    <div class="list" ng-show="show">
+      <div class="item item-divider">
+        Applied to
+      </div>
+      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:true}">
+        <img src="http://placehold.it/32x32">
+        <h2>{{task.title}}</h2>
+        <p>{{task.details|limitTo:40}}&hellip;</p>
+      </a>
+    </div>
+
+    <div class="list" ng-show="show">
+      <h4>Tasks</h4>
+      <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:false}">
+        <img src="http://placehold.it/32x32">
+        <h2>{{task.title}}</h2>
+        <p>{{task.details|limitTo:40}}&hellip;</p>
+      </a>
+    </div>
   </ion-content>
 </ion-view>
