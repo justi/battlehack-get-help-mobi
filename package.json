@@ -1,7 +1,7 @@
 {
-  "name": "Favour",
+  "name": "Favourhood",
   "version": "1.0.0",
-  "description": "Favour",
+  "description": "Favourhood - gamify good deeds",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",

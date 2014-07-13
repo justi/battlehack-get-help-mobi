@@ -247,7 +247,6 @@ angular.module('starter.controllers', [])
         }
 
         $scope.userdata = {
-            email:'krzysztof.hasinski@gmail.com'
         };
 
         $scope.login = function() {
