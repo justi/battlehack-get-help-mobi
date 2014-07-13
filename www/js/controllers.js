@@ -1,27 +1,6 @@
 angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
-        var ls = window.localStorage;
-
-        if(!ls.getItem('settings')) {
-            var baseSettings = {
-                'categories': {
-                    'Babysitting': true,
-                    'Moving in/out': true,
-                    'Groceries': true,
-                    'Transport': true,
-                    'Pet care': true,
-                    'Emergency': true,
-                    'BattleHack': true
-                }
-            }
-            ls.setItem('settings', JSON.stringify(baseSettings));
-        }
-
-        $scope.settings = JSON.parse(ls.getItem('settings'));
-        $scope.$watch('settings', function() {
-            ls.setItem('settings', JSON.stringify($scope.settings));
-        }, true);
         $scope.openWindow = function() {
             window.open('http://apache.org', '_blank', 'location=yes');
         };
@@ -203,7 +182,7 @@ angular.module('starter.controllers', [])
             }
         );
     })
-    .controller('LeftSlideCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
+    .controller('LeftSlideCtrl', function($scope, $ionicSideMenuDelegate, Categories, CategoryImage) {
         var ls = window.localStorage;
 
         if(!ls.getItem('settings')) {
@@ -226,6 +205,7 @@ angular.module('starter.controllers', [])
             ls.setItem('settings', JSON.stringify($scope.settings));
         }, true);
         $scope.categories = Categories.all();
+        $scope.getCategoryImage = CategoryImage.getCategoryByName;
     })
     .controller('RightSlideCtrl', function($scope, $ionicSideMenuDelegate, Badges, $rootScope) {
         $scope.badges = Badges.all();
