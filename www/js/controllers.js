@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
             content: 'Getting current location&hellip;',
             showBackdrop: false
         });
-        $scope.users = Users.all();
+
         $rootScope.tasks = [];
 
         navigator.geolocation.getCurrentPosition(function (pos) {
@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
                 params: {
                     'lat': lat,
                     'lng': lng,
-                    'types': [] //
+                    'types': [] // TODO
                 }
             }).success(function(data){
                 $rootScope.tasks = data;
@@ -133,7 +133,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
+    .controller('MapCtrl', function ($scope, $ionicLoading, $http, $rootScope) {
 
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',
@@ -163,10 +163,27 @@ angular.module('starter.controllers', [])
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
-                var me = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: 'Starting point'
+
+                $http({
+                    url: 'http://favourhood.org/api/task',
+                    method: "GET",
+                    params: {
+                        'lat': pos.coords.latitude,
+                        'lng': pos.coords.longitude,
+                        'types': [] // TODO
+                    }
+                }).success(function(data){
+                    $rootScope.tasks = data;
+                    for(var i=0; i<data.length;++i) {
+                        var task = data[i];
+                        console.log(task);
+                        var point = new google.maps.Marker({
+                            position: new google.maps.LatLng(task.lat, task.lng),
+                            map: map,
+                            title: task.title
+                        });
+                    }
+                    $scope.show = true;
                 });
 
                 $scope.map = map;
