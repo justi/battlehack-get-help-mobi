@@ -33,7 +33,7 @@
         Categories
       </li>
       <li class="item item-toggle categories-images" ng-repeat="category in categories">
-        <img ng-src="/img/{{getCategoryImage(category)}}">
+        <img ng-src="img/{{getCategoryImage(category)}}">
         {{category}}
         <label class="toggle toggle-assertive">
            <input type="checkbox" ng-model="settings.categories[category]">
@@ -51,8 +51,7 @@
         My achievements
     </div>
     <div class="item item-toggle">
-      <p><img ng-src="http://www.gravatar.com/avatar/{{emailHash}}"> Email: {{user.email}}</p>
-      <img src="http://placehold.it/108x108" class="points-icon float-left"><h1 class="points-title">{{points}}</h1>
+      <img src="img/icon/point_108.png" class="points-icon float-left"><h1 class="points-title">{{points}}</h1>
     </div>
 
     <div ng-repeat="badge in badges">

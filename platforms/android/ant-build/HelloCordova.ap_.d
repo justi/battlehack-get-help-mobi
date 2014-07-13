@@ -64,7 +64,19 @@
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/README.md \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/css/style.css \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/favourhood-logo.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/icon \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/ionic.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/babysitting.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/battlehack.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/emergency.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/groceries.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/moving-in-out.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/pet-care.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/category/transport.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/icon/point_108.png \
+/Users/justi/projects/get-help-mobi/platforms/android/assets/www/img/icon/point_32.png \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/js/app.js \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/js/controllers.js \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/js/services.js \
@@ -152,5 +164,4 @@
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-requests.html \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tab-settings.html \
 /Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/tabs.html \
-/Users/justi/projects/get-help-mobi/platforms/android/assets/www/templates/user-details.html \
 /Users/justi/projects/get-help-mobi/platforms/android/ant-build/AndroidManifest.xml \

@@ -1,39 +1,18 @@
 angular.module('starter.controllers', [])
 
     .controller('SettingsCtrl', function($scope) {
-        var ls = window.localStorage;
-
-        if(!ls.getItem('settings')) {
-            var baseSettings = {
-                'categories': {
-                    'Babysitting': true,
-                    'Moving in/out': true,
-                    'Groceries': true,
-                    'Transport': true,
-                    'Pet care': true,
-                    'Emergency': true,
-                    'BattleHack': true
-                }
-            }
-            ls.setItem('settings', JSON.stringify(baseSettings));
-        }
-
-        $scope.settings = JSON.parse(ls.getItem('settings'));
-        $scope.$watch('settings', function() {
-            ls.setItem('settings', JSON.stringify($scope.settings));
-        }, true);
         $scope.openWindow = function() {
             window.open('http://apache.org', '_blank', 'location=yes');
         };
     })
 
-    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope, $ionicLoading) {
+    .controller('RequestsCtrl', function($scope, Users, $http, $rootScope, $ionicLoading, CategoryImage) {
         $scope.show = false;
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',
             showBackdrop: false
         });
-        $scope.users = Users.all();
+
         $rootScope.tasks = [];
 
         navigator.geolocation.getCurrentPosition(function (pos) {
@@ -45,7 +24,7 @@ angular.module('starter.controllers', [])
                 params: {
                     'lat': lat,
                     'lng': lng,
-                    'types': [] //
+                    'types': [] // TODO
                 }
             }).success(function(data){
                 $rootScope.tasks = data;
@@ -60,9 +39,12 @@ angular.module('starter.controllers', [])
                 $ionicLoading.hide();
             }
         );
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
 
-    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http) {
+    .controller('RequestDetailsCtrl', function($scope, $stateParams, $rootScope, $state, $http, CategoryImage) {
         var taskId = $stateParams.taskId;
         if(!$rootScope.tasks) {
             $state.go('tab.requests')
@@ -81,14 +63,13 @@ angular.module('starter.controllers', [])
         $scope.cancel = function() {
             // TODO
         };
+
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
 
-    .controller('UserDetailsCtrl', function($scope, $stateParams, Tasks, Users) {
-        //$scope.task = Tasks.get($stateParams.taskId);
-        $scope.user = Users.get($stateParams.userId);
-    })
-
-    .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state) {
+    .controller('MyRequestsCtrl', function($scope, Users, Categories, $http, $state, $stateParams, CategoryImage) {
         $scope.myTask = null;
         $scope.show = null;
         $scope.categories = Categories.all();
@@ -98,13 +79,21 @@ angular.module('starter.controllers', [])
                 $state.go($state.current, {}, {reload: true});
             });
         }
+        $scope.redeem = function() {
+            $http.post('http://favourhood.org/api/redeem').success(function(){
+                $state.go($state.current, {}, {reload: true});
+            });
+        }
         $http.get('http://favourhood.org/api/task/my').success(function(data){
             if(data!='null') {
-                $scope.show='edit';
+                $scope.show = 'edit';
                 $scope.myTask = data;
+                $scope.applied = [];
+                $http.get('http://favourhood.org/api/applied').success(function(data){
+                    $scope.applied = data;
+                });
             } else {
-                $scope.show='add';
-                $scope.users = Users.all();
+                $scope.show = 'add';
                 $scope.myTask = {
                     points: 1,
                     title: '',
@@ -117,7 +106,7 @@ angular.module('starter.controllers', [])
             navigator.geolocation.getCurrentPosition(function (pos) {
                 $scope.myTask.lat = pos.coords.latitude;
                 $scope.myTask.lng = pos.coords.longitude;
-                $scope.myTask.deadline = Date.now() + (3600 * 1000);
+                $scope.myTask.deadline = Date.now() + (15 * 60 * 1000);
                 $http.post('http://favourhood.org/api/task/delete').success(function(){
                     $http.post('http://favourhood.org/api/task', $scope.myTask).success(function(data) {
                         $state.go($state.current, {}, {reload: true});
@@ -125,9 +114,18 @@ angular.module('starter.controllers', [])
                 });
             }, function(err) { console.log(err); });
         }
+        $scope.approve = function(userId) {
+            console.log(userId);
+            $http.post('http://favourhood.org/api/accept/', {'user_id': userId}).success(function(){
+                $state.go('tab.my-requests', {}, {reload:true});
+            });
+        };
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
 
-    .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
+    .controller('MapCtrl', function ($scope, $ionicLoading, $http, $rootScope, CategoryImage) {
 
         $scope.loading = $ionicLoading.show({
             content: 'Getting current location&hellip;',
@@ -157,10 +155,35 @@ angular.module('starter.controllers', [])
                 };
                 var map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
-                var me = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: 'Starting point'
+
+                $http({
+                    url: 'http://favourhood.org/api/task',
+                    method: "GET",
+                    params: {
+                        'lat': pos.coords.latitude,
+                        'lng': pos.coords.longitude,
+                        'types': [] // TODO
+                    }
+                }).success(function(data){
+                    $rootScope.tasks = data;
+                    for(var i=0; i<data.length;++i) {
+                        var task = data[i];
+                        if(task.type) {
+                            var point = new google.maps.Marker({
+                                position: new google.maps.LatLng(task.lat, task.lng),
+                                map: map,
+                                title: task.title,
+                                icon: '/img/'+CategoryImage.getCategoryByName(task.type)
+                            });
+                        } else {
+                            var point = new google.maps.Marker({
+                                position: new google.maps.LatLng(task.lat, task.lng),
+                                map: map,
+                                title: task.title
+                            });
+                        }
+                    }
+                    $scope.show = true;
                 });
 
                 $scope.map = map;
@@ -181,7 +204,7 @@ angular.module('starter.controllers', [])
             }
         );
     })
-    .controller('LeftSlideCtrl', function($scope, $ionicSideMenuDelegate, Categories) {
+    .controller('LeftSlideCtrl', function($scope, $ionicSideMenuDelegate, Categories, CategoryImage) {
         var ls = window.localStorage;
 
         if(!ls.getItem('settings')) {
@@ -204,16 +227,19 @@ angular.module('starter.controllers', [])
             ls.setItem('settings', JSON.stringify($scope.settings));
         }, true);
         $scope.categories = Categories.all();
+        $scope.getCategoryImage = function(param) {
+            return CategoryImage.getCategoryByName(param);
+        };
     })
     .controller('RightSlideCtrl', function($scope, $ionicSideMenuDelegate, Badges, $rootScope) {
         $scope.badges = Badges.all();
-        $scope.avatarSrc =  "http://www.gravatar.com/" + "KSDHHDSHDSHDSDKSH";//$rootScope.user.emailHash; TODO
     })
     .controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
         var ls = window.localStorage;
         if(ls.getItem('token')) {
             $scope.error = null;
             $http.defaults.headers.common['X-Token'] = JSON.parse(ls.getItem('token'));
+            $rootScope.emailHash = JSON.parse(ls.getItem('emailHash'));
             $http.get('http://favourhood.org/api/points').success(function(data) {
                 $rootScope.points = data.points;
             });
@@ -223,16 +249,13 @@ angular.module('starter.controllers', [])
         $scope.userdata = {
             email:'krzysztof.hasinski@gmail.com'
         };
-        $scope.error = null;
 
         $scope.login = function() {
             $http.post('http://favourhood.org/api/login', $scope.userdata)
                 .success(function(data) {
-                    $scope.error = null;
                     $http.defaults.headers.common['X-Token'] = data.login_token;
-                    $rootScope.user = {};
-                    $rootScope.user.email = $scope.userdata.email;
-                    $rootScope.user.emailHash = data.email_hash;
+                    $rootScope.emailHash = data.email_hash;
+                    ls.setItem('emailHash', JSON.stringify(data.email_hash));
                     ls.setItem('token', JSON.stringify(data.login_token));
                     $http.get('http://favourhood.org/api/points').success(function(data) {
                         $rootScope.points = data.points;

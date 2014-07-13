@@ -41,7 +41,23 @@ angular.module('starter.services', [])
     }
   }
 })
-.factory('Tasks', function() {
+.factory('CategoryImage', function() {
+  var categories = {
+      'Babysitting' : 'babysitting',
+      'Moving in/out' : 'moving-in-out',
+      'Groceries' : 'groceries',
+      'Transport' : 'transport',
+      'Pet care' : 'pet-care',
+      'Emergency' : 'emergency',
+      'Battlehack' : 'battlehack'
+  }
+
+  return {
+    getCategoryByName: function (categoryName) {
+      return categories[categoryName] != null ? 'category/' + categories[categoryName] + '.png' : '#'
+    }
+  }
+}).factory('Tasks', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data

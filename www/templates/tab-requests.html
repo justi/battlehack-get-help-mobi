@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon"><img src="http://placehold.it/32x32" class="points-icon">{{points}}</button>
+    <button menu-toggle="right" class="button button-icon"><img src="img/icon/point_32.png" class="points-icon">{{points}}</button>
   </ion-nav-buttons>
   <ion-content class="has-header padding">
 
@@ -13,7 +13,7 @@
       </div>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{accepted:true}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
-        <img ng-src="/img/{{getCategoryImage(task.type)}}">
+        <img ng-src="img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>
@@ -26,7 +26,7 @@
       </div>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:true}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
-        <img ng-src="/img/{{getCategoryImage(task.type)}}">
+        <img ng-src="img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>
@@ -37,7 +37,7 @@
       <h4>Tasks</h4>
       <a class="item item-avatar" href="#/tab/requests/{{task.id}}" ng-repeat="task in tasks|filter:{applied:false}">
         <img ng-src="http://www.gravatar.com/avatar/{{task.added.email_hash}}">
-        <img ng-src="/img/{{getCategoryImage(task.type)}}">
+        <img ng-src="img/{{getCategoryImage(task.type)}}">
         <h2>{{task.title}}</h2>
         <p>{{task.deadline|date : 'medium'}}</p>
         <p>{{task.details|limitTo:40}}&hellip;</p>
