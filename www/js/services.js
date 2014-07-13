@@ -49,7 +49,7 @@ angular.module('starter.services', [])
       'Transport' : 'transport',
       'Pet care' : 'pet-care',
       'Emergency' : 'emergency',
-      'Battlehack' : ''
+      'Battlehack' : 'battlehack'
   }
 
   return {
