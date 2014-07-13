@@ -49,6 +49,10 @@ h1.points-title{
   padding-right: 10px;
 }
 
+.margin-top {
+  margin-top: 12px;
+}
+
 p.task-points {
   font-size: 1.2em;
   vertical-align: top;

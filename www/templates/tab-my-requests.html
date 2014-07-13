@@ -80,13 +80,12 @@
 
     <div class="list" ng-show="show=='edit'">
       <h4>Applied for your task</h4>
-      {{ applied|json }}
-      <a class="item item-avatar" ng-repeat="user in applied">
-        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
+      <div class="item item-avatar" ng-repeat="user in applied">
+        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}" class="margin-top"/>
         <button class="button button-full button-balanced" ng-click="approve(user.email_hash)">
           Accept
         </button>
-      </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>

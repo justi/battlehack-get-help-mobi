@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
                                 position: new google.maps.LatLng(task.lat, task.lng),
                                 map: map,
                                 title: task.title,
-                                icon: '/img/'+CategoryImage.getCategoryByName(task.type)
+                                icon: 'img/'+CategoryImage.getCategoryByName(task.type)
                             });
                         } else {
                             var point = new google.maps.Marker({
@@ -247,7 +247,6 @@ angular.module('starter.controllers', [])
         }
 
         $scope.userdata = {
-            email:'krzysztof.hasinski@gmail.com'
         };
 
         $scope.login = function() {

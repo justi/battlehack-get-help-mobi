@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon"><img class="points-icon">{{points}}</button>
+    <button menu-toggle="right" class="button button-icon"><img src="img/icon/point_32.png" class="points-icon">{{points}}</button>
   </ion-nav-buttons>
   <ion-content class="has-header padding">
     <div class="list" ng-show="show=='add'">
@@ -64,9 +64,9 @@
         {{myTask.title}}
       </div>
       <div class="item item-avatar">
+        <img ng-src="http://www.gravatar.com/avatar/{{emailHash}}" class="float-left">
         <img ng-src="img/{{getCategoryImage(myTask.type)}}">
-        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}">
-        <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
+        <p class="task-points float-right"><img src="img/icon/point_32.png" class="points-icon">{{myTask.points}}</p>
           <p>{{myTask.details}}</p>
           <p>Deadline: {{myTask.deadline| date : 'medium'}}</p>
         </div>
@@ -79,12 +79,13 @@
     </div>
 
     <div class="list" ng-show="show=='edit'">
-      <h4>Applied to your task</h4>
+      <h4>Applied for your task</h4>
+      {{ applied|json }}
       <a class="item item-avatar" ng-repeat="user in applied">
+        <img ng-src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
         <button class="button button-full button-balanced" ng-click="approve(user.email_hash)">
-          Approve for this task
+          Accept
         </button>
-        <img src="http://www.gravatar.com/avatar/{{user.email_hash}}" />
       </a>
     </div>
   </ion-content>
