@@ -80,6 +80,11 @@ angular.module('starter.controllers', [])
                 $state.go($state.current, {}, {reload: true});
             });
         }
+        $scope.redeem = function() {
+            $http.post('http://favourhood.org/api/redeem').success(function(){
+                $state.go($state.current, {}, {reload: true});
+            });
+        }
         $http.get('http://favourhood.org/api/task/my').success(function(data){
             if(data!='null') {
                 $scope.show='edit';

@@ -68,12 +68,14 @@
         <h2><img src="http://placehold.it/32x32" class="points-icon">{{myTask.points}}</h2>
           <p>{{myTask.details}}</p>
           <p>Deadline: {{myTask.deadline| date : 'medium'}}</p>
-          <p>Redeem code: {{myTask.redeem}}
       </div>
 
-      <button class="button button-assertive button-full" ng-click="delete()">
-        Delete task
-      </button>
+        <button class="button button-assertive button-full" ng-click="delete()">
+            Delete task
+        </button>
+        <button class="button button-assertive button-full" ng-click="redeem()">
+            Redeem points
+        </button>
     </div>
 
     <div class="list" ng-show="show=='edit'">
