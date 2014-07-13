@@ -105,7 +105,8 @@ angular.module('starter.controllers', [])
             }
         });
         $scope.add = function() {
-            navigator.geolocation.getCurrentPosition(function (pos) {
+                var pos = {};
+                pos.coords = {};
                 pos.coords.latitude = 52.2684177;
                 pos.coords.longitude = 20.9895862;
                 $scope.myTask.lat = pos.coords.latitude;
@@ -116,7 +117,6 @@ angular.module('starter.controllers', [])
                         $state.go($state.current, {}, {reload: true});
                     });
                 });
-            }, function(err) { console.log(err); });
         }
         $scope.approve = function(userId) {
             console.log(userId);
@@ -137,7 +137,8 @@ angular.module('starter.controllers', [])
         });
 
         $scope.init = function () {
-            navigator.geolocation.getCurrentPosition(function (pos) {
+                var pos = {};
+                pos.coords = {};
                 pos.coords.latitude = 52.2684177;
                 pos.coords.longitude = 20.9895862;
                 var myLatlng = new google.maps.LatLng(52.2684177, 20.9895862);
@@ -205,12 +206,7 @@ angular.module('starter.controllers', [])
 
                 $scope.map = map;
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                $scope.map.setTilt(45);
                 $ionicLoading.hide();
-            }, function (error) {
-                alert('Unable to get location: ' + error.message);
-                $ionicLoading.hide();
-            });
         };
 
         $scope.init();
