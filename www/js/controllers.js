@@ -177,7 +177,7 @@ angular.module('starter.controllers', [])
                         (function(task) {
                             if(task.type) {
                                 var infowindow = new google.maps.InfoWindow({
-                                    content: '<div id="content"><h3>'+
+                                    content: '<div class="marker-popup"><h3>'+
                                         '<a href="#/tab/requests/' + task.id + '">' + task.title +
                                         '</h3></a></div>'
                                 });
