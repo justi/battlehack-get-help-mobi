@@ -15,7 +15,8 @@ angular.module('starter.controllers', [])
 
         $rootScope.tasks = [];
 
-        navigator.geolocation.getCurrentPosition(function (pos) {
+            var pos = {};
+            pos.coords = {};
             pos.coords.latitude = 52.2684177;
             pos.coords.longitude = 20.9895862;
             var lat = pos.coords.latitude;
@@ -33,7 +34,6 @@ angular.module('starter.controllers', [])
                 $scope.show = true;
                 $ionicLoading.hide();
             });
-        });
 
         $scope.$on(
             "$destroy",
